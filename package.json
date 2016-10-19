@@ -1,7 +1,7 @@
 {
   "name": "shoot-the-breeze",
   "version": "1.0.0",
-  "description": "A starter kit for Turing School's Shoot The Breeze project",
+  "description": "Shoot The Breeze project",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -15,7 +15,7 @@
     "type": "git",
     "url": "git+https://github.com/turingschool-examples/shoot-the-breeze.git"
   },
-  "author": "Turing School",
+  "author": "Matt Andrew and Lacey",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/turingschool-examples/shoot-the-breeze/issues"
