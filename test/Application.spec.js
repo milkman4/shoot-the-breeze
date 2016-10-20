@@ -23,6 +23,8 @@ describe('Application', () => {
       expect(wrapper.text()).to.equal('hi');
     }, 1000);
   })
+
+  // test moment.js date associated with message moment/time
 });
 
 describe('UserInput', () => {

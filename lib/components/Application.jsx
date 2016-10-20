@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import firebase, { messsagesFromDatabase, signIn } from '../firebase';
 import { pick, map, extend } from 'lodash';
 import moment from 'moment';
-import UserInput from './UserInput.js';
-import Messages from './Messages.js'
+import UserInput from './UserInput.jsx';
+import Messages from './Messages.jsx'
 
 // Very few things in this component are a good idea.
 // Feel free to blow it all away.

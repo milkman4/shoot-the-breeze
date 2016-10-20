@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import firebase, { messsagesFromDatabase, signIn } from '../firebase';
 import { pick, map, extend } from 'lodash';
+import {SingleMessage} from './SingleMessage.jsx'
+
 
 export default class Messages extends Component {
   constructor() {
@@ -23,7 +25,7 @@ export default class Messages extends Component {
   render() {
     return(
       <ul>
-        { this.state.messages.map(m => <li key={m.key}>{m.user.displayName}{m.createdAt}: {m.content}</li>) }
+        { this.state.messages.map(m => <SingleMessage {...m} key={m.key}/>) }
       </ul>
     )
   }
