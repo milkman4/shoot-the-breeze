@@ -1,8 +1,10 @@
 $wtf: #ffffff;
 $ridiculous: cursive;
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans');
 
 body {
   background: $wtf;
+  font-family: 'Fira Sans', sans-serif;
 }
 
 .hello-world {

@@ -6,6 +6,7 @@ export const MessageFilter = ({filterFunction}) => {
       className='message-filter'
       type='text'
       onChange={filterFunction}
+      placeholder = 'Filter'
     />
   )
 }
