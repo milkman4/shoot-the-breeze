@@ -16,9 +16,10 @@ export default class Messages extends Component {
   }
 
   filterMessages(filterString) {
+
     this.setState ({filteredMessages: filter(this.state.messages, (message) => {
-        return message.content.includes(filterString)
-    })
+        return message.content.toLowerCase().includes(filterString.toLowerCase())
+      })
     })
   }
 
