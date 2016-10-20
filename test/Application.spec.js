@@ -21,7 +21,7 @@ describe('Application', () => {
     wrapper.find('.submit-button').simulate('click');
     setTimeout(() => {
       expect(wrapper.text()).to.equal('hi');
-    }, 2000);
+    }, 1000);
   })
 });
 
