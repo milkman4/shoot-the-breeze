@@ -44,4 +44,13 @@ describe('UserInput', () => {
     input.simulate('change', {target: {value: 'hello'} });
     expect(wrapper.state('draftMessage')).to.equal('hello');
   });
+
+  it('should be able to count the characters in the input field', () => {
+    const wrapper = mount(<UserInput />);
+    const input = wrapper.find('.message-input-field')
+    const characterCount = wrapper.find('.character-count')
+
+    input.simulate('change', {target: {value: 'a'}})
+    expect(characterCount.text()).to.equal('139');
+  })
 })
