@@ -62,10 +62,10 @@ describe('UserInput', () => {
 
 
     input.simulate('change', {target: {value: 'hello'} });
-    expect(input.text()).to.equal('hello');
+    expect(wrapper.state('draftMessage')).to.equal('hello');
 
     clearButton.simulate('click');
-    expect(input.text()).to.equal('');
+    expect(wrapper.state('draftMessage')).to.equal('');
     expect(characterCount.text()).to.equal('140');
   })
 
