@@ -22,9 +22,11 @@ describe('Application', () => {
     setTimeout(() => {
       expect(wrapper.text()).to.equal('hi');
     }, 1000);
-  })
+  });
 
-  // test moment.js date associated with message moment/time
+  it.skip('posts a message with the correct date and time', () => {
+
+  })
 });
 
 describe('UserInput', () => {
@@ -62,7 +64,6 @@ describe('UserInput', () => {
     const characterCount = wrapper.find('.character-count')
     const clearButton = wrapper.find('.clear-button')
 
-
     input.simulate('change', {target: {value: 'hello'} });
     expect(wrapper.state('draftMessage')).to.equal('hello');
 
@@ -71,4 +72,10 @@ describe('UserInput', () => {
     expect(characterCount.text()).to.equal('140');
   })
 
-})
+});
+
+describe('Messages', () => {
+  it.skip('should filter messages based on the user input in the search field', () => {
+
+  })
+});
