@@ -21,14 +21,27 @@ export default class UserInput extends Component {
     <form className="message-input">
       <input
         maxLength='140'
+        type='text'
         className='message-input-field'
         placeholder="Message…"
         value={this.state.draftMessage}
         onChange={(e) => this.setState({ draftMessage: e.target.value })}
-        />
-        <span className='character-count'>{ 140-this.state.draftMessage.length}</span>
-      <input className='submit-button' type='submit' onClick={(e) => this.submitMessage(e)} value='Submit' disabled ={this.state.draftMessage.length === 0}/>
-      <input className='clear-button' type='button' onClick={() => this.setState({draftMessage: ''})} value='Clear' disabled ={this.state.draftMessage.length === 0}/>
+      />
+      <span className='character-count'>{ 140-this.state.draftMessage.length}</span>
+      <input
+        className='submit-button'
+        type='submit'
+        onClick={(e) => this.submitMessage(e)}
+        value='Submit'
+        disabled ={this.state.draftMessage.length === 0}
+      />
+      <input
+        className='clear-button'
+        type='button'
+        onClick={() => this.setState({draftMessage: ''})}
+        value='Clear'
+        disabled ={this.state.draftMessage.length === 0}
+      />
     </form>
     )
   }

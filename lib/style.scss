@@ -1,10 +1,48 @@
-$wtf: #ffffff;
+@import 'reset.scss';
+@import 'variables.scss';
+
+
 $ridiculous: cursive;
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans');
+
 
 body {
-  background: $wtf;
+  background: #fff;
+  font-family: 'Fira Sans', sans-serif;
 }
 
+h1 {
+  display: inline-block;
+  margin-left: 15px;
+  color: #fff;
+}
+
+input[type='text']{
+  margin: 10px;
+  font-size: 20px;
+  display: inline-block;
+  background-color: $inputBackground;
+  border-style: none;
+  border-radius: 2px;
+}
+
+header, footer{
+  background-color: $headerBackground;
+  height: 50px;
+}
+.messages-container{
+  .time-stamp{
+    color: $timestampColor;
+    margin-left: 10px;
+  }
+  .display-name{
+    margin: 10px;
+    color: $userNameColor;
+  }
+  .content{
+    margin: 15px;
+  }
+}
 .hello-world {
   font-family: $ridiculous;
 }
