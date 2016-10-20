@@ -15,4 +15,3 @@ export const SingleMessage = ({user, createdAt, content}) => {
     </li>
   )
 }
-// module.exports = SingleMessage;

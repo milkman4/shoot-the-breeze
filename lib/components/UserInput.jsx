@@ -21,6 +21,7 @@ export default class UserInput extends Component {
     <form className="message-input">
       <input
         maxLength='140'
+        type='text'
         className='message-input-field'
         placeholder="Message…"
         value={this.state.draftMessage}
