@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import firebase, { messsagesFromDatabase, signIn } from '../firebase';
 import { pick, map, extend } from 'lodash';
 import {SingleMessage} from './SingleMessage.jsx'
+import {MessageFilter} from './MessageFilter.jsx'
 
 
 export default class Messages extends Component {
@@ -11,6 +12,10 @@ export default class Messages extends Component {
       messages: [],
       messagesCount: ''
     }
+  }
+
+  filterMessages({filterString}) {
+    console.log('andrew sucks')
   }
 
   componentDidMount() {
@@ -24,9 +29,12 @@ export default class Messages extends Component {
 
   render() {
     return(
-      <ul>
-        { this.state.messages.map(m => <SingleMessage {...m} key={m.key}/>) }
-      </ul>
+      <div>
+      <MessageFilter filterFunction={this.filterMessages.bind(this)}/>
+        <ul>
+          { this.state.messages.map(m => <SingleMessage {...m} key={m.key}/>) }
+        </ul>
+      </div>
     )
   }
 }
