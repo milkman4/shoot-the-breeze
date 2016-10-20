@@ -52,5 +52,21 @@ describe('UserInput', () => {
 
     input.simulate('change', {target: {value: 'a'}})
     expect(characterCount.text()).to.equal('139');
+  });
+
+  it('the input field should clear if user clicks clear button', () => {
+    const wrapper = mount(<UserInput />);
+    const input = wrapper.find('.message-input-field')
+    const characterCount = wrapper.find('.character-count')
+    const clearButton = wrapper.find('.clear-button')
+
+
+    input.simulate('change', {target: {value: 'hello'} });
+    expect(input.text()).to.equal('hello');
+
+    clearButton.simulate('click');
+    expect(input.text()).to.equal('');
+    expect(characterCount.text()).to.equal('140');
   })
+
 })
