@@ -30,10 +30,13 @@ export default class Messages extends Component {
   render() {
     return(
       <div>
-      <MessageFilter filterFunction={this.filterMessages.bind(this)}/>
-        <ul>
-          { this.state.messages.map(m => <SingleMessage {...m} key={m.key}/>) }
-        </ul>
+      <header>
+        <h1>Shoot The Breeze</h1>
+        <MessageFilter filterFunction={this.filterMessages.bind(this)}/>
+      </header>
+      <ul className='messages-container'>
+        { this.state.messages.map(m => <SingleMessage {...m} key={m.key}/>) }
+      </ul>
       </div>
     )
   }

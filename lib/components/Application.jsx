@@ -33,9 +33,11 @@ export default class Application extends Component {
     const { user, messages } = this.state;
     return (
       <div className="Application">
-        {user ? <p>Hello {user.displayName}</p> : <button onClick={() => signIn()}>Sign In</button> }
         <Messages />
+        {user ? <p>Hello {user.displayName}</p> : <button onClick={() => signIn()}>Sign In</button> }
+      <footer>
         <UserInput addNewMessage={ this.addNewMessage.bind(this) }/>
+      </footer>
       </div>
     )
   }
