@@ -5,7 +5,9 @@ export const MessageFilter = ({filterFunction}) => {
     <input
       className='message-filter'
       type='text'
-      onChange={filterFunction}
+      onChange={(e) => {
+        filterFunction(e.target.value)}
+      }
       placeholder = 'Filter'
     />
   )
