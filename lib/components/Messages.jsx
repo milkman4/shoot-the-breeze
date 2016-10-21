@@ -31,7 +31,9 @@ export default class Messages extends Component {
   }
   componentDidUpdate() {
     var scroll = Scroll.animateScroll;
-    scroll.scrollToBottom();
+    scroll.scrollToBottom({
+      duration: 0 //happen instantly
+    });
   }
   render() {
     return(

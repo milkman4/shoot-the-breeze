@@ -27,7 +27,6 @@ input[type=text]{
 }
 
 
-
 header, footer{
   background-color: $headerBackground;
   height: 50px;
@@ -40,11 +39,22 @@ header {
 }
 
 footer {
+  height: 100px;
   bottom: 0;
 }
 
+.active-user{
+  color: white;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  background-color: $activeUserColor;
+  height: 50px;
+  width: 100%;
+}
+
 .messages-container{
-  margin: 60px auto;
+  margin: 110px auto;
   .time-stamp{
     color: $timestampColor;
     margin-left: 10px;
@@ -89,7 +99,6 @@ footer {
     color: white;
   }
 }
-
 
 #new-message--content {
   height: 100px;
