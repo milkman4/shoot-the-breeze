@@ -15,15 +15,12 @@ export default class Messages extends Component {
       filteredMessages: []
     }
   }
-
   filterMessages(filterString) {
-
     this.setState ({filteredMessages: filter(this.state.messages, (message) => {
         return message.content.toLowerCase().includes(filterString.toLowerCase())
       })
     })
   }
-
   componentDidMount() {
     messagesFromDatabase.limitToLast(100).on('value', (snapshot) => {
       const messages = snapshot.val() || {};
