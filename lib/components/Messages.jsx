@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import firebase, { messsagesFromDatabase, signIn } from '../firebase';
+import firebase, { messagesFromDatabase, signIn } from '../firebase';
 import { pick, map, extend, filter } from 'lodash';
 import {SingleMessage} from './SingleMessage.jsx'
 import {MessageFilter} from './MessageFilter.jsx'
@@ -24,7 +24,7 @@ export default class Messages extends Component {
   }
 
   componentDidMount() {
-    messsagesFromDatabase.limitToLast(100).on('value', (snapshot) => {
+    messagesFromDatabase.limitToLast(100).on('value', (snapshot) => {
       const messages = snapshot.val() || {};
       this.setState({
         messages: map(messages, (val, key) => extend(val, { key }))
