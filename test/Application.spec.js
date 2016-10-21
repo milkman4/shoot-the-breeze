@@ -2,6 +2,7 @@ import React from 'react';
 
 import { shallow, mount, render } from 'enzyme';
 import { assert, expect } from 'chai';
+import moment from 'moment';
 
 import Application from '../lib/components/Application';
 import UserInput from '../lib/components/UserInput';
@@ -25,18 +26,32 @@ describe('Application', () => {
     }, 1000);
   });
 
-  it.skip('posts a message with the correct date and time', () => {
+  it('posts a message with the correct date and time', () => {
     const wrapper = mount(<Application />);
     const input = wrapper.find('.message-input-field');
     const submitButton = wrapper.find('.submit-button');
-    const 
+    const rightNow = moment().format('MMMM D, h:mm a');
 
     input.simulate('change', {target: {value: 'hi'} });
     submitButton.simulate('click');
+
+    setTimeout(() => {
+      expect(wrapper.text()).to.equal(rightNow);
+    }, 500);
   });
 
-  it.skip('posts a message with the correct user name', () => {
+  it('posts a message with the correct user name', () => {
+    const wrapper = mount(<Application />);
+    const input = wrapper.find('.message-input-field');
+    const submitButton = wrapper.find('.submit-button');
+    const userName = wrapper.user;
 
+    input.simulate('change', {target: {value: 'hi'} });
+    submitButton.simulate('click');
+
+    setTimeout(() => {
+      expect(wrapper.text()).to.equal(userName);
+    }, 500);
   });
 
 });

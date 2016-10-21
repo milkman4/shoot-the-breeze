@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import firebase, { messagesFromDatabase, signIn } from '../firebase';
 import { pick, map, extend, filter } from 'lodash';
-import {SingleMessage} from './SingleMessage.jsx'
-import {MessageFilter} from './MessageFilter.jsx'
+import {SingleMessage} from './SingleMessage.jsx';
+import {MessageFilter} from './MessageFilter.jsx';
 
 
 export default class Messages extends Component {
