@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import firebase, { messsagesFromDatabase, signIn } from '../firebase';
+import firebase, { messagesFromDatabase, signIn } from '../firebase';
 import { pick, map, extend } from 'lodash';
 import moment from 'moment';
 import UserInput from './UserInput.jsx';
@@ -22,7 +22,7 @@ export default class Application extends Component {
 
   addNewMessage(draftMessage) {
     const { user } = this.state;
-    messsagesFromDatabase.push({
+    messagesFromDatabase.push({
       user: pick(user, 'displayName', 'email', 'uid'),
       content: draftMessage,
       createdAt: moment().format('MMMM D, h:mm a')
