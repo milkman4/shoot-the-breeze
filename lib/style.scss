@@ -29,8 +29,20 @@ input[type='text']{
 header, footer{
   background-color: $headerBackground;
   height: 50px;
+  position: fixed;
+  width: 100%;
 }
+
+header {
+  top: 0;
+}
+
+footer {
+  bottom: 0;
+}
+
 .messages-container{
+  margin: 60px auto;
   .time-stamp{
     color: $timestampColor;
     margin-left: 10px;
