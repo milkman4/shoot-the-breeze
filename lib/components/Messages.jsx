@@ -3,6 +3,7 @@ import firebase, { messagesFromDatabase, signIn } from '../firebase';
 import { pick, map, extend, filter } from 'lodash';
 import {SingleMessage} from './SingleMessage.jsx';
 import {MessageFilter} from './MessageFilter.jsx';
+import Scroll from 'react-scroll'
 
 
 export default class Messages extends Component {
@@ -31,7 +32,10 @@ export default class Messages extends Component {
       });
     });
   }
-
+  componentDidUpdate() {
+    var scroll = Scroll.animateScroll;
+    scroll.scrollToBottom();
+  }
   render() {
     return(
       <div>
