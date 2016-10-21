@@ -4,6 +4,8 @@ import { pick, map, extend } from 'lodash';
 import moment from 'moment';
 import UserInput from './UserInput.jsx';
 import Messages from './Messages.jsx'
+import {UserList} from './UserList.jsx'
+
 
 // Very few things in this component are a good idea.
 // Feel free to blow it all away.
@@ -34,8 +36,9 @@ export default class Application extends Component {
     return (
       <div className="Application">
         <Messages />
-        {user ? <p>Hello {user.displayName}</p> : <button onClick={() => signIn()}>Sign In</button> }
+        <UserList />
       <footer>
+        <div className='active-user'>{user ? <p>Logged in as <strong>{user.displayName}</strong> ({user.email})</p> : <button onClick={() => signIn()}>Sign In</button> }</div>
         <UserInput addNewMessage={ this.addNewMessage.bind(this) }/>
       </footer>
       </div>

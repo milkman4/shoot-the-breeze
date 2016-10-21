@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import firebase, { messagesFromDatabase, signIn } from '../firebase';
-import { pick, map, extend, filter } from 'lodash';
+import { pick, map, extend, filter, countBy, keyBy } from 'lodash';
 import {SingleMessage} from './SingleMessage.jsx';
 import {MessageFilter} from './MessageFilter.jsx';
 import Scroll from 'react-scroll'
+
 
 
 export default class Messages extends Component {
@@ -15,15 +16,12 @@ export default class Messages extends Component {
       filteredMessages: []
     }
   }
-
   filterMessages(filterString) {
-
     this.setState ({filteredMessages: filter(this.state.messages, (message) => {
         return message.content.toLowerCase().includes(filterString.toLowerCase())
       })
     })
   }
-
   componentDidMount() {
     messagesFromDatabase.limitToLast(100).on('value', (snapshot) => {
       const messages = snapshot.val() || {};
@@ -34,9 +32,15 @@ export default class Messages extends Component {
   }
   componentDidUpdate() {
     var scroll = Scroll.animateScroll;
-    scroll.scrollToBottom();
+    scroll.scrollToBottom({
+      duration: 0 //happen instantly
+    });
   }
   render() {
+    let userListArray  = []
+    userListArray = keyBy(this.state.messages, 'user.displayName')
+    console.log(userListArray)
+    console.log(Object.keys(userListArray));
     return(
       <div>
       <header>

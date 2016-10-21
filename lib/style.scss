@@ -17,7 +17,7 @@ h1 {
   color: #fff;
 }
 
-input[type='text']{
+input[type=text]{
   margin: 10px;
   font-size: 20px;
   display: inline-block;
@@ -38,11 +38,22 @@ header {
 }
 
 footer {
+  height: 100px;
   bottom: 0;
 }
 
+.active-user{
+  color: white;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  background-color: $activeUserColor;
+  height: 50px;
+  width: 100%;
+}
+
 .messages-container{
-  margin: 60px auto;
+  margin: 55px auto 110px auto;
   .time-stamp{
     color: $timestampColor;
     margin-left: 10px;
@@ -55,8 +66,37 @@ footer {
     margin: 15px;
   }
 }
-.hello-world {
-  font-family: $ridiculous;
+
+.message-input{
+  display: flex;
+  align-items: center;
+  .message-input-field{
+    height: 30px;
+    width: 60%;
+  }
+  .character-count{
+    margin-right: 30px;
+    margin-left: 10px;
+    color: white;
+  }
+  .submit-button{
+    width: 75px;
+    margin-right: 20px;
+    border-radius: 3px;
+    height: 30px;
+    border-style: none;
+    background-color: $submitButtonColor;
+    color: white;
+  }
+  .clear-button{
+    width: 75px;
+    margin-left: 20px;
+    border-radius: 3px;
+    height: 30px;
+    border-style: none;
+    background-color: $clearButtonColor;
+    color: white;
+  }
 }
 
 #new-message--content {
