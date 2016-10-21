@@ -26,7 +26,6 @@ input[type=text]{
   border-radius: 2px;
 }
 
-
 header, footer{
   background-color: $headerBackground;
   height: 50px;
@@ -54,7 +53,7 @@ footer {
 }
 
 .messages-container{
-  margin: 110px auto;
+  margin: 55px auto 110px auto;
   .time-stamp{
     color: $timestampColor;
     margin-left: 10px;
