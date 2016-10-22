@@ -67,6 +67,16 @@ footer {
   }
 }
 
+.user-list-container{
+  background-color: $usersListBackground;
+  position: fixed;
+  right: 0;
+  top: 50px;
+  padding: 20px;
+  height: 800px;
+  width: 300px;
+}
+
 .message-input{
   display: flex;
   align-items: center;

@@ -3,6 +3,7 @@ import firebase, { messagesFromDatabase, signIn } from '../firebase';
 import { pick, map, extend, filter, countBy, keyBy } from 'lodash';
 import {SingleMessage} from './SingleMessage.jsx';
 import {MessageFilter} from './MessageFilter.jsx';
+import {UserList} from './UserList.jsx'
 import Scroll from 'react-scroll'
 
 
@@ -37,10 +38,27 @@ export default class Messages extends Component {
     });
   }
   render() {
-    let userListArray  = []
-    userListArray = keyBy(this.state.messages, 'user.displayName')
-    console.log(userListArray)
-    console.log(Object.keys(userListArray));
+    let userList;
+    userList = keyBy(this.state.messages, 'user.displayName')
+    console.log(userList)
+
+    let userListArray = (Object.keys(userList))
+    let userListDisplay;
+
+    let userArray = [];
+
+    userListArray.forEach((userName)=>{
+      console.log(userName)
+      console.log(userList)
+      userArray.push(userList[userName].user)
+    })
+
+    console.log(userArray);
+
+    if(userArray.length > 0){
+      userListDisplay = <UserList userList={userArray}/>
+    }
+
     return(
       <div>
       <header>
@@ -51,6 +69,7 @@ export default class Messages extends Component {
         { this.state.filteredMessages.length > 0 ?
           this.state.filteredMessages.map(m => <SingleMessage {...m} key={m.key}/>) : this.state.messages.map(m => <SingleMessage {...m} key={m.key}/>) }
       </ul>
+        {userListDisplay}
       </div>
     )
   }
