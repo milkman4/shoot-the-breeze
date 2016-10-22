@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const SingleUser = ({displayName,  email}) => {
+export const SingleUser = (user) => {
   return (
     <li>
       <span className="user-name">
