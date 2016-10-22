@@ -5,7 +5,7 @@ export const SingleUser = ({displayName, email}) => {
   return (
     <li className='single-user'>
       <span className="user-name">
-        {displayName} 
+        {displayName}&nbsp;
       </span>
       <span className="user-email">
         ({email})

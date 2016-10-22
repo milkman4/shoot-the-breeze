@@ -41,19 +41,13 @@ export default class Messages extends Component {
     let userList;
     userList = keyBy(this.state.messages, 'user.displayName')
     console.log(userList)
-
     let userListArray = (Object.keys(userList))
     let userListDisplay;
-
     let userArray = [];
 
     userListArray.forEach((userName)=>{
-      console.log(userName)
-      console.log(userList)
       userArray.push(userList[userName].user)
     })
-
-    console.log(userArray);
 
     if(userArray.length > 0){
       userListDisplay = <UserList userList={userArray}/>
