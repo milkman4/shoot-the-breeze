@@ -17,6 +17,13 @@ export default class Messages extends Component {
       filteredMessages: []
     }
   }
+  filterByUser(user){
+    this.filterMessages(user)
+    this.setState ({filteredMessages: filter(this.state.messages, (message) => {
+        return message.user.displayName.includes(user)
+      })
+    })
+  }
   filterMessages(filterString) {
     this.setState ({filteredMessages: filter(this.state.messages, (message) => {
         return message.content.toLowerCase().includes(filterString.toLowerCase())
@@ -38,19 +45,18 @@ export default class Messages extends Component {
     });
   }
   render() {
-    let userList;
-    userList = keyBy(this.state.messages, 'user.displayName')
-    console.log(userList)
-    let userListArray = (Object.keys(userList))
-    let userListDisplay;
+    let userList = keyBy(this.state.messages, 'user.displayName')
+    let userNameArray = (Object.keys(userList))
     let userArray = [];
 
-    userListArray.forEach((userName)=>{
+    userNameArray.forEach((userName)=>{
       userArray.push(userList[userName].user)
     })
 
+    let userListDisplay;
+
     if(userArray.length > 0){
-      userListDisplay = <UserList userList={userArray}/>
+      userListDisplay = <UserList userList={userArray} filterByUser = {this.filterByUser.bind(this)}/>
     }
 
     return(

@@ -3,9 +3,8 @@ import {SingleUser} from './SingleUser.jsx';
 import {countBy} from 'lodash';
 import {map, toArray} from 'lodash';
 
-export const UserList = (userList) => {
-  let userListArray = userList.userList
-  let displayUsers = userListArray.map(user => <SingleUser {...user} key={user.uid}/>)
+export const UserList = ({userList, filterByUser}) => {
+  let displayUsers = userList.map(user => <SingleUser {...user} key={user.uid} handleClick={filterByUser}/>)
   return (
     <div className="user-list-container">
       <h2> <strong>Users</strong> </h2>

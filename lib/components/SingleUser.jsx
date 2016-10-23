@@ -1,9 +1,8 @@
 import React from 'react'
 
-export const SingleUser = ({displayName, email}) => {
-  console.log(displayName)
+export const SingleUser = ({displayName, email, handleClick}) => {
   return (
-    <li className='single-user'>
+    <li className='single-user' onClick={()=>handleClick(displayName)}>
       <span className="user-name">
         {displayName}&nbsp;
       </span>
