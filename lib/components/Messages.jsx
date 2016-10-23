@@ -61,7 +61,7 @@ export default class Messages extends Component {
     let userListDisplay;
 
     if(userArray.length > 0){
-      userListDisplay = <UserList userList={userArray} filterByUser = {this.filterByUser.bind(this)}/>
+      userListDisplay = <UserList userList={userArray} currentUser={this.props.currentUser} filterByUser = {this.filterByUser.bind(this)}/>
     }
 
     let messageDisplay = this.state.filteredMessages.length > 0 ?
