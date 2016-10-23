@@ -55,6 +55,7 @@
     "webpack-dev-server": "^1.15.2"
   },
   "dependencies": {
+    "locus": "^1.2.0",
     "moment": "^2.15.1"
   }
 }

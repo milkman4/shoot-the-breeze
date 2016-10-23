@@ -3,6 +3,7 @@ import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import { assert, expect } from 'chai';
 import moment from 'moment';
+import locus from 'locus';
 
 import Application from '../lib/components/Application';
 import UserInput from '../lib/components/UserInput';
@@ -112,6 +113,16 @@ describe('Messages', () => {
     setTimeout(() => {
       expect(wrapper.state('filteredMessages')).to.equal('one');
     }, 1000);
+  })
 
+  it('should filter messages based on the user who originally created the message', () => {
+    const wrapper = mount(<Messages />);
+    var userList;
+    setTimeout(() => {
+      userList = wrapper.find('.user-name').text('Matthew Kaufman');
+    }, 1000);
+
+    eval(locus);
+    console.log(userList);
   });
 });
