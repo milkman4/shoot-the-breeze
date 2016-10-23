@@ -18,7 +18,6 @@ export default class Messages extends Component {
     }
   }
   filterByUser(user){
-    this.filterMessages(user)
     this.setState ({filteredMessages: filter(this.state.messages, (message) => {
         return message.user.displayName.includes(user)
       })
