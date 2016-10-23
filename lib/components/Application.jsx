@@ -32,9 +32,13 @@ export default class Application extends Component {
 
   render() {
     const { user, messages } = this.state;
+    let currentUser;
+    if (this.state.user !== null) {
+      currentUser = this.state.user.displayName
+    }
     return (
       <div className="Application">
-        <Messages />
+        <Messages currentUser={currentUser}/>
       <footer>
         <div className='active-user'>{user ? <p>Logged in as <strong>{user.displayName}</strong> ({user.email})</p> : <button onClick={() => signIn()}>Sign In</button> }</div>
         <UserInput addNewMessage={ this.addNewMessage.bind(this) }/>
