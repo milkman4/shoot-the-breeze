@@ -5,13 +5,14 @@ import {SingleMessage} from './SingleMessage.jsx';
 import {MessageFilter} from './MessageFilter.jsx';
 import {UserList} from './UserList.jsx'
 import Scroll from 'react-scroll'
-
+import {SortButtons} from './SortButtons.jsx'
 
 
 export default class Messages extends Component {
   constructor() {
     super();
     this.state = {
+      reverseMessages: false,
       messages: [],
       messagesCount: '',
       filteredMessages: []
@@ -32,9 +33,10 @@ export default class Messages extends Component {
   componentDidMount() {
     messagesFromDatabase.limitToLast(100).on('value', (snapshot) => {
       const messages = snapshot.val() || {};
-      this.setState({
-        messages: map(messages, (val, key) => extend(val, { key }))
-      });
+        this.setState({
+          messages: map(messages, (val, key) => extend(val, { key })),
+          reverseMessages: map(messages, (val, key) => extend(val, { key })).reverse()
+        });
     });
   }
   componentDidUpdate() {
@@ -42,6 +44,10 @@ export default class Messages extends Component {
     scroll.scrollToBottom({
       duration: 0 //happen instantly
     });
+  }
+  changeSort(direction) {
+    direction === 'up' ? this.setState({reverseMessages: true}) : this.setState({reverseMessages: false})
+    console.log(this.state.reverseMessages);
   }
   render() {
     let userList = keyBy(this.state.messages, 'user.displayName')
@@ -58,15 +64,22 @@ export default class Messages extends Component {
       userListDisplay = <UserList userList={userArray} filterByUser = {this.filterByUser.bind(this)}/>
     }
 
+    let messageDisplay = this.state.filteredMessages.length > 0 ?
+      this.state.filteredMessages.map(m => <SingleMessage {...m} key={m.key}/>) : this.state.messages.map(m => <SingleMessage {...m} key={m.key}/>)
+
+    if(!this.state.reverseMessages){
+      messageDisplay = messageDisplay.reverse()
+    }
+
     return(
       <div>
       <header>
         <h1>Shoot The Breeze</h1>
         <MessageFilter filterFunction={this.filterMessages.bind(this)}/>
+        <SortButtons sort={this.changeSort.bind(this)} />
       </header>
       <ul className='messages-container'>
-        { this.state.filteredMessages.length > 0 ?
-          this.state.filteredMessages.map(m => <SingleMessage {...m} key={m.key}/>) : this.state.messages.map(m => <SingleMessage {...m} key={m.key}/>) }
+        {messageDisplay}
       </ul>
         {userListDisplay}
       </div>
