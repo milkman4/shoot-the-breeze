@@ -8,7 +8,7 @@ export const UserList = ({userList, filterByUser, currentUser}) => {
   return (
     <div className="user-list-container">
       <h2 onClick={() => filterByUser(userList)}> Users </h2>
-      <ul>
+      <ul className="user-list">
           {displayUsers}
       </ul>
     </div>

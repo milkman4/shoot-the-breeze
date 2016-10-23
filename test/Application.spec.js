@@ -103,6 +103,20 @@ describe('UserInput', () => {
 });
 
 describe('Messages', () => {
+
+
+  it ('should render a container for the messages', () => {
+    const wrapper = shallow(<Messages />)
+    expect(wrapper.find('.messages-container')).to.have.length(1);
+  });
+
+  it ('should render a user list', () => {
+    const wrapper = mount(<Messages />)
+    setTimeout(() => {
+      expect(wrapper.find('.user-list-container')).to.have.length(1);
+    }, 1000);
+  });
+
   it('should filter messages based on the user input in the search field', () => {
     const wrapper = mount(<Messages />);
     const input = wrapper.find('.message-input-field');
@@ -113,16 +127,16 @@ describe('Messages', () => {
     setTimeout(() => {
       expect(wrapper.state('filteredMessages')).to.equal('one');
     }, 1000);
-  })
-
-  it('should filter messages based on the user who originally created the message', () => {
-    const wrapper = mount(<Messages />);
-    var userList;
-    setTimeout(() => {
-      userList = wrapper.find('.user-name').text('Matthew Kaufman');
-    }, 1000);
-
-    eval(locus);
-    console.log(userList);
   });
+
+  // it('should filter messages based on the user who originally created the message', () => {
+  //   const wrapper = mount(<Messages />);
+  //   var userList;
+  //   setTimeout(() => {
+  //     userList = wrapper.find('.user-name').text('Matthew Kaufman');
+  //   }, 1000);
+  //
+  //   eval(locus);
+  //   console.log(userList);
+  // });
 });
