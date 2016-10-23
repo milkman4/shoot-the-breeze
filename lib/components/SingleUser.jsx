@@ -1,17 +1,14 @@
 import React from 'react'
 
-export const SingleUser = ({displayName,  email}) => {
+export const SingleUser = ({displayName, email, handleClick}) => {
   return (
-    <li>
+    <li className='single-user' onClick={()=>handleClick(displayName)}>
       <span className="user-name">
-        {userListArray.user.displayName}
+        {displayName}&nbsp;
       </span>
       <span className="user-email">
-        {userListArray.user.email}
+        ({email})
       </span>
-      {/* <p className="user-status">
-        {content}
-      </p> */}
     </li>
   )
 }

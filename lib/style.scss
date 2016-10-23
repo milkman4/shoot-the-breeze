@@ -17,6 +17,11 @@ h1 {
   color: #fff;
 }
 
+h2{
+  color: $headerBackground;
+  font-weight: bold;
+}
+
 input[type=text]{
   margin: 10px;
   font-size: 20px;
@@ -64,6 +69,29 @@ footer {
   }
   .content{
     margin: 15px;
+  }
+}
+
+.user-list-container{
+  background-color: $usersListBackground;
+  position: fixed;
+  right: 0;
+  top: 50px;
+  padding: 20px;
+  height: 800px;
+  width: 38.2%;
+  .single-user{
+    margin-top: 10px;
+    color: $headerBackground;
+    .user-name{
+
+    }
+    .user-email{
+      word-wrap: break-word;
+    }
+  }
+  .single-user:hover{
+    cursor: pointer;
   }
 }
 
