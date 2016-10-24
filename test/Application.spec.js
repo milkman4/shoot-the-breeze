@@ -2,6 +2,7 @@ import React from 'react';
 
 import { shallow, mount, render } from 'enzyme';
 import { assert, expect } from 'chai';
+let sinon = require('sinon');
 import moment from 'moment';
 import locus from 'locus';
 
@@ -14,6 +15,12 @@ describe('Application', () => {
   it('renders as a <div>', () => {
     const wrapper = shallow(<Application />);
     assert.equal(wrapper.type(), 'div');
+  });
+
+  it('calls componentDidMount', () => {
+    sinon.spy(Application.prototype, 'componentDidMount');
+        const wrapper = mount(<Application />);
+        expect(Application.prototype.componentDidMount.calledOnce).to.equal(true);
   });
 
   it('renders a message on the page on click of submit button', () => {
@@ -64,9 +71,44 @@ describe('UserInput', () => {
     assert.equal(wrapper.type(), 'form');
   });
 
-  it('renders as a submit button', () => {
+  it('renders a submit button', () => {
     const wrapper = shallow(<UserInput />)
     expect(wrapper.find('.submit-button')).to.have.length(1);
+  });
+
+  it('renders a clear button', () => {
+    const wrapper = shallow(<UserInput />)
+    expect(wrapper.find('.clear-button')).to.have.length(1);
+  });
+
+  it('simulates a click event on submit button', () => {
+    const click = sinon.spy();
+    const wrapper = shallow(
+      <UserInput onClick={click}/>);
+    const submitButton = wrapper.find('.submit-button');
+    submitButton.simulate('submit');
+    expect(click).to.have.been.called;
+  });
+
+  it('simulates a click event on clear button', () => {
+    const click = sinon.spy();
+    const wrapper = shallow(
+      <UserInput onClick={click}/>);
+    const submitButton = wrapper.find('.clear-button');
+    submitButton.simulate('submit');
+    expect(click).to.have.been.called;
+  });
+
+  it('clears the input field', () => {
+    const wrapper = mount(<UserInput />);
+    const input = wrapper.find('.message-input-field');
+    const clearButton = wrapper.find('.clear-button')
+
+    input.simulate('change', {target: {value: 'hello'} });
+    expect(wrapper.state('draftMessage')).to.equal('hello');
+
+    clearButton.simulate('click');
+    expect(wrapper.state('draftMessage')).to.equal('');
   });
 
   it('should change the state when user input a message', () => {
@@ -104,7 +146,6 @@ describe('UserInput', () => {
 
 describe('Messages', () => {
 
-
   it ('should render a container for the messages', () => {
     const wrapper = shallow(<Messages />)
     expect(wrapper.find('.messages-container')).to.have.length(1);
@@ -115,6 +156,12 @@ describe('Messages', () => {
     setTimeout(() => {
       expect(wrapper.find('.user-list-container')).to.have.length(1);
     }, 1000);
+  });
+
+  it('calls componentDidMount', () => {
+    sinon.spy(Messages.prototype, 'componentDidMount');
+        const wrapper = mount(<Messages />);
+        expect(Messages.prototype.componentDidMount.calledOnce).to.equal(true);
   });
 
   it('should filter messages based on the user input in the search field', () => {
@@ -129,14 +176,37 @@ describe('Messages', () => {
     }, 1000);
   });
 
-  // it('should filter messages based on the user who originally created the message', () => {
-  //   const wrapper = mount(<Messages />);
-  //   var userList;
-  //   setTimeout(() => {
-  //     userList = wrapper.find('.user-name').text('Matthew Kaufman');
-  //   }, 1000);
-  //
-  //   eval(locus);
-  //   console.log(userList);
-  // });
+  it.skip('should change sort direction on click on sort buttons', () => {
+    const wrapper = mount(<Messages />);
+    const upArrow = wrapper.find('.sort-up');
+    const downArrow = wrapper.find('.sort-down');
+
+    wrapper.state({messages: [{name: 'Lacey'}, {name:'Matt'}, {name:'Andrew'}]});
+
+    //set state of messages
+    //check if message first and last are correct
+    setTimeout (() => {
+      expect(wrapper.state('messages')).to.equal(3);
+      expect(wrapper.find('messages').first().props().name).to.equal('Lacey');
+      expect(wrapper.find('messages').last().props().name).to.equal('Andrew');
+
+      downArrow.simulate('click');
+
+      expect(wrapper.find('messages').first().props().name).to.equal('Andrew');
+      expect(wrapper.find('messages').last().props().name).to.equal('Lacey');
+  }, 1000);
+
+
+  });
+
+  it.skip('should filter messages based on the user who originally created the message', () => {
+    const wrapper = mount(<Messages messages={messages}/>);
+    var userList;
+    setTimeout(() => {
+      userList = wrapper.find('.user-name').text('Matthew Kaufman');
+    }, 1000);
+
+    eval(locus);
+    console.log(userList);
+  });
 });
