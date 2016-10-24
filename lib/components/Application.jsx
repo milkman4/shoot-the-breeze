@@ -39,7 +39,7 @@ export default class Application extends Component {
         <Messages currentUser={currentUser}/>
       <footer>
         <div className='active-user'>{user ?
-          <p>Logged in as <strong>{user.displayName}</strong> ({user.email})  <button className='auth-button' onClick={()=> signOut()}>Sign Out</button>
+          <p>Logged in as <strong>{user.displayName}</strong> ({user.email})  <button className='auth-button button' onClick={()=> signOut()}>Sign Out</button>
           </p>
         : <button className='auth-button' onClick={() => signIn()}>Sign In</button> }
         </div>

@@ -29,14 +29,14 @@ export default class UserInput extends Component {
       />
       <span className='character-count'>{ 140-this.state.draftMessage.length}</span>
       <input
-        className='submit-button'
+        className='submit-button button'
         type='submit'
         onClick={(e) => this.submitMessage(e)}
         value='Submit'
         disabled ={this.state.draftMessage.length === 0}
       />
       <input
-        className='clear-button'
+        className='clear-button button'
         type='button'
         onClick={() => this.setState({draftMessage: ''})}
         value='Clear'
