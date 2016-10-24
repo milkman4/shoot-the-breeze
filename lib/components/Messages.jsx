@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import firebase, { messagesFromDatabase, signIn } from '../firebase';
 import { pick, map, extend, filter, countBy, keyBy } from 'lodash';
 import {SingleMessage} from './SingleMessage.jsx';
 import {MessageFilter} from './MessageFilter.jsx';
-import {UserList} from './UserList.jsx'
-import Scroll from 'react-scroll'
-import {SortButtons} from './SortButtons.jsx'
+import {UserList} from './UserList.jsx';
+import Scroll from 'react-scroll';
+import {SortButtons} from './SortButtons.jsx';
 
 
 export default class Messages extends Component {
@@ -16,19 +16,19 @@ export default class Messages extends Component {
       messages: [],
       messagesCount: '',
       filteredMessages: []
-    }
+    };
   }
   filterByUser(user){
     this.setState ({filteredMessages: filter(this.state.messages, (message) => {
-        return message.user.displayName.includes(user)
+        return message.user.displayName.includes(user);
       })
-    })
+    });
   }
   filterMessages(filterString) {
     this.setState ({filteredMessages: filter(this.state.messages, (message) => {
         return message.content.toLowerCase().includes(filterString.toLowerCase())
       })
-    })
+    });
   }
   componentDidMount() {
     messagesFromDatabase.limitToLast(100).on('value', (snapshot) => {
@@ -50,13 +50,13 @@ export default class Messages extends Component {
     console.log(this.state.reverseMessages);
   }
   render() {
-    let userList = keyBy(this.state.messages, 'user.displayName')
-    let userNameArray = (Object.keys(userList))
+    let userList = keyBy(this.state.messages, 'user.displayName');
+    let userNameArray = (Object.keys(userList));
     let userArray = [];
 
     userNameArray.forEach((userName)=>{
-      userArray.push(userList[userName].user)
-    })
+      userArray.push(userList[userName].user);
+    });
 
     let userListDisplay;
 
