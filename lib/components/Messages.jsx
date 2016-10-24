@@ -49,17 +49,19 @@ export default class Messages extends Component {
     direction === 'up' ? this.setState({reverseMessages: true}) : this.setState({reverseMessages: false})
     console.log(this.state.reverseMessages);
   }
-  render() {
+  getUserArray() {
     let userList = keyBy(this.state.messages, 'user.displayName');
     let userNameArray = (Object.keys(userList));
     let userArray = [];
-
     userNameArray.forEach((userName)=>{
       userArray.push(userList[userName].user);
     });
+    return userArray;
+  }
+  render() {
+    let userArray = this.getUserArray()
 
     let userListDisplay;
-
     if(userArray.length > 0){
       userListDisplay = <UserList userList={userArray} currentUser={this.props.currentUser} filterByUser = {this.filterByUser.bind(this)}/>
     }

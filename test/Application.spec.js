@@ -29,6 +29,7 @@ describe('Application', () => {
 
     input.simulate('change', {target: {value: 'hi'} });
     wrapper.find('.submit-button').simulate('click');
+
     setTimeout(() => {
       expect(wrapper.text()).to.equal('hi');
     }, 1000);
