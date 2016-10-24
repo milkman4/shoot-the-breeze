@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import firebase, { messsagesFromDatabase, signIn } from '../firebase';
+// import firebase, { messsagesFromDatabase, signIn } from '../firebase';
 import { pick, map, extend } from 'lodash';
 
 export default class UserInput extends Component {
