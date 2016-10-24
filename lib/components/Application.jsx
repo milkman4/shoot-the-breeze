@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import firebase, { messagesFromDatabase, signIn, signOut } from '../firebase';
-import { pick, map, extend } from 'lodash';
+import {split, pick, map, extend } from 'lodash';
 import moment from 'moment';
 import UserInput from './UserInput.jsx';
 import Messages from './Messages.jsx'
@@ -30,8 +30,10 @@ export default class Application extends Component {
   render() {
     const { user, messages } = this.state;
     let currentUser;
+    let firstName;
     if (this.state.user !== null) {
       currentUser = this.state.user.displayName
+      firstName = split(this.state.user.displayName, ' ')
     }
 
     return (
@@ -39,7 +41,7 @@ export default class Application extends Component {
         <Messages currentUser={currentUser}/>
       <footer>
         <div className='active-user'>{user ?
-          <p>Logged in as <strong>{user.displayName}</strong> ({user.email})  <button className='auth-button button' onClick={()=> signOut()}>Sign Out</button>
+          <p>Logged in as <span className="bold">{firstName[0]}</span> ({user.email})  <button className='auth-button button' onClick={()=> signOut()}>Sign Out</button>
           </p>
         : <button className='auth-button' onClick={() => signIn()}>Sign In</button> }
         </div>
