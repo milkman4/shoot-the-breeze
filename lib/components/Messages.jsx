@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import firebase, { messagesFromDatabase, signIn } from '../firebase';
-import { pick, map, extend, filter, countBy, keyBy } from 'lodash';
+import { pick, map, extend, filter, countBy, keyBy, find} from 'lodash';
 import {SingleMessage} from './SingleMessage.jsx';
 import {MessageFilter} from './MessageFilter.jsx';
 import {UserList} from './UserList.jsx';
@@ -15,7 +15,8 @@ export default class Messages extends Component {
       reverseMessages: false,
       messages: [],
       messagesCount: '',
-      filteredMessages: []
+      filteredMessages: [],
+      filterString: ''
     };
   }
   filterByUser(user){
@@ -27,8 +28,8 @@ export default class Messages extends Component {
   filterMessages(filterString) {
     this.setState ({filteredMessages: filter(this.state.messages, (message) => {
         return message.content.toLowerCase().includes(filterString.toLowerCase())
-      })
-    });
+      }),
+      filterString: filterString});
   }
   componentDidMount() {
     messagesFromDatabase.limitToLast(100).on('value', (snapshot) => {
@@ -49,23 +50,31 @@ export default class Messages extends Component {
     direction === 'up' ? this.setState({reverseMessages: true}) : this.setState({reverseMessages: false})
     console.log(this.state.reverseMessages);
   }
-  render() {
+  getUserArray() {
     let userList = keyBy(this.state.messages, 'user.displayName');
     let userNameArray = (Object.keys(userList));
     let userArray = [];
-
     userNameArray.forEach((userName)=>{
       userArray.push(userList[userName].user);
     });
+    return userArray;
+  }
+  render() {
+    let userArray = this.getUserArray()
 
     let userListDisplay;
-
     if(userArray.length > 0){
       userListDisplay = <UserList userList={userArray} currentUser={this.props.currentUser} filterByUser = {this.filterByUser.bind(this)}/>
     }
 
-    let messageDisplay = this.state.filteredMessages.length > 0 ?
-      this.state.filteredMessages.map(m => <SingleMessage {...m} key={m.key}/>) : this.state.messages.map(m => <SingleMessage {...m} key={m.key}/>)
+    let messageDisplay;
+    if(this.state.filteredMessages.length > 0){
+      messageDisplay = this.state.filteredMessages.map(m => <SingleMessage {...m} key={m.key}/>)
+    } else if (this.state.filterString.length > 0){
+      messageDisplay = ''
+    } else {
+      messageDisplay = this.state.messages.map(m => <SingleMessage {...m} key={m.key}/>)
+    }
 
     if(!this.state.reverseMessages){
       messageDisplay = messageDisplay.reverse()
