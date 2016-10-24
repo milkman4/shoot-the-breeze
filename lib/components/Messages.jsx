@@ -16,7 +16,8 @@ export default class Messages extends Component {
       messages: [],
       messagesCount: '',
       filteredMessages: [],
-      filterString: ''
+      filterString: '',
+      messageView: 100
     };
   }
   filterByUser(user){
@@ -32,18 +33,29 @@ export default class Messages extends Component {
       filterString: filterString});
   }
   componentDidMount() {
-    messagesFromDatabase.limitToLast(100).on('value', (snapshot) => {
+    messagesFromDatabase.limitToLast(this.state.messageView).on('value', (snapshot) => {
       const messages = snapshot.val() || {};
-        this.setState({
-          messages: map(messages, (val, key) => extend(val, { key })),
-          reverseMessages: map(messages, (val, key) => extend(val, { key })).reverse()
-        });
+      this.setState({
+        messages: map(messages, (val, key) => extend(val, { key })),
+        reverseMessages: map(messages, (val, key) => extend(val, { key })).reverse()
+      });
     });
   }
   componentDidUpdate() {
     var scroll = Scroll.animateScroll;
     scroll.scrollToBottom({
       duration: 0 //happen instantly
+    });
+  }
+  changeMessageView(e){
+    console.log(e.target.value);
+    this.setState({ messageView: e.target.value})
+    messagesFromDatabase.limitToLast(parseInt(e.target.value)).on('value', (snapshot) => {
+      const messages = snapshot.val() || {};
+      this.setState({
+        messages: map(messages, (val, key) => extend(val, { key })),
+        reverseMessages: map(messages, (val, key) => extend(val, { key })).reverse()
+      });
     });
   }
   changeSort(direction) {
@@ -86,6 +98,7 @@ export default class Messages extends Component {
         <h1>Shoot The Breeze</h1>
         <MessageFilter filterFunction={this.filterMessages.bind(this)}/>
         <SortButtons sort={this.changeSort.bind(this)} />
+        <input type="number" value={this.state.messageView} onChange={(e) => this.changeMessageView(e)} />
       </header>
       <ul className='messages-container'>
         {messageDisplay}

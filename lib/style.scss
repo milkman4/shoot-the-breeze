@@ -2,13 +2,9 @@
 @import 'variables.scss';
 
 
-$ridiculous: cursive;
-@import url('https://fonts.googleapis.com/css?family=Fira+Sans');
-
-
 body {
   background: #fff;
-  font-family: 'Fira Sans', sans-serif;
+  font-family: $main-font;
 }
 
 h1 {
@@ -25,10 +21,27 @@ h2{
   }
 }
 
+.button {
+  font-family: $main-font;
+  font-size: 16px;
+  font-weight: 300;
+  width: 75px;
+  margin-left: 20px;
+  border-radius: 3px;
+  height: 30px;
+  border-style: none;
+  color: #FFF;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 input[type=text]{
-  margin: 10px;
-  font-size: 20px;
+  color: $userNameColor;
+  margin: 12px;
+  font-size: 16px;
   display: inline-block;
+  padding: 5px;
   background-color: $inputBackground;
   border-style: none;
   border-radius: 2px;
@@ -48,6 +61,12 @@ header {
 footer {
   height: 100px;
   bottom: 0;
+}
+
+button.sort-up, button.sort-down {
+  background: $sortButtonColor;
+  float: right;
+  margin: 10px 10px 0 0;
 }
 
 .active-user{
@@ -99,13 +118,7 @@ footer {
 }
 
 .auth-button{
-  width: 75px;
-  margin-right: 20px;
-  border-radius: 3px;
-  height: 30px;
-  border-style: none;
   background-color: $submitButtonColor;
-  color: white;
 }
 
 .message-input{
@@ -121,22 +134,10 @@ footer {
     color: white;
   }
   .submit-button{
-    width: 75px;
-    margin-right: 20px;
-    border-radius: 3px;
-    height: 30px;
-    border-style: none;
     background-color: $submitButtonColor;
-    color: white;
   }
   .clear-button{
-    width: 75px;
-    margin-left: 20px;
-    border-radius: 3px;
-    height: 30px;
-    border-style: none;
     background-color: $clearButtonColor;
-    color: white;
   }
 }
 

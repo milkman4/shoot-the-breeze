@@ -1,9 +1,14 @@
-$inputBackground: #bdc3c7;
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400');
+
+
+$inputBackground: #ECF0F1;
 $headerBackground: #34495e;
 $timestampColor: #9b59b6;
 $userNameColor: #2980b9;
 $submitButtonColor: #27ae60;
 $clearButtonColor: #c0392b;
 $sortButtonColor: #2980b9;
-$usersListBackground: #bdc3c7;
+$usersListBackground: #ECF0F1;
 $activeUserColor: #7f8c8d;
+
+$main-font: 'Fira Sans', sans-serif;
