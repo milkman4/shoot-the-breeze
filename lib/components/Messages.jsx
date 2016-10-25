@@ -37,7 +37,6 @@ export default class Messages extends Component {
       const messages = snapshot.val() || {};
       this.setState({
         messages: map(messages, (val, key) => extend(val, { key })),
-        reverseMessages: map(messages, (val, key) => extend(val, { key })).reverse()
       });
     });
   }
@@ -48,7 +47,6 @@ export default class Messages extends Component {
     });
   }
   changeMessageView(e){
-    console.log(e.target.value);
     this.setState({ messageView: e.target.value})
     messagesFromDatabase.limitToLast(parseInt(e.target.value)).on('value', (snapshot) => {
       const messages = snapshot.val() || {};
@@ -60,7 +58,6 @@ export default class Messages extends Component {
   }
   changeSort(direction) {
     direction === 'up' ? this.setState({reverseMessages: true}) : this.setState({reverseMessages: false})
-    console.log(this.state.reverseMessages);
   }
   getUserArray() {
     let userList = keyBy(this.state.messages, 'user.displayName');
@@ -88,7 +85,7 @@ export default class Messages extends Component {
       messageDisplay = this.state.messages.map(m => <SingleMessage {...m} key={m.key}/>)
     }
 
-    if(!this.state.reverseMessages){
+    if(this.state.reverseMessages){
       messageDisplay = messageDisplay.reverse()
     }
 
