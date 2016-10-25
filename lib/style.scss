@@ -21,12 +21,12 @@ h2{
   }
 }
 
-.button {
+.button, .auth-button{
   font-family: $main-font;
   font-size: 16px;
   font-weight: 300;
   width: 75px;
-  margin-left: 20px;
+  margin-left: 10px;
   border-radius: 3px;
   height: 30px;
   border-style: none;
@@ -36,7 +36,7 @@ h2{
   }
 }
 
-input[type=text]{
+input[type=text], .number-of-msgs{
   color: $userNameColor;
   margin: 12px;
   font-size: 16px;
@@ -45,6 +45,10 @@ input[type=text]{
   background-color: $inputBackground;
   border-style: none;
   border-radius: 2px;
+}
+
+.number-of-msgs{
+  width: 75px;
 }
 
 header, footer{
@@ -59,7 +63,7 @@ header {
 }
 
 footer {
-  height: 100px;
+  height: 115px;
   bottom: 0;
 }
 
@@ -80,10 +84,14 @@ button.sort-up, button.sort-down {
 }
 
 .messages-container{
-  margin: 55px auto 110px auto;
+  margin: 55px auto 120px auto;
   .time-stamp{
     color: $timestampColor;
     margin-left: 10px;
+  }
+  .time-mobile {
+    position: absolute;
+    visibility: hidden;
   }
   .display-name{
     margin: 10px;
@@ -129,7 +137,7 @@ button.sort-up, button.sort-down {
     width: 60%;
   }
   .character-count{
-    margin-right: 30px;
+    margin-right: 10px;
     margin-left: 10px;
     color: white;
   }
@@ -138,10 +146,69 @@ button.sort-up, button.sort-down {
   }
   .clear-button{
     background-color: $clearButtonColor;
+    margin-right: 10px;
   }
 }
 
 #new-message--content {
   height: 100px;
   border: 1px dotted aliceblue;
+}
+
+@media screen and (max-width: 660px){
+
+  h1{
+    display: none;
+  }
+
+  header{
+    height: 140px;
+    text-align: center;
+    z-index: 1;
+  }
+
+  footer {
+    height: 105px;
+  }
+
+  .user-list-container{
+    display: none;
+  }
+
+  button.sort-up, button.sort-down{
+    margin-top: 2px;
+    float: none;
+  }
+
+  .sort-buttons{
+    display: block;
+  }
+
+  .active-user{
+    display: none;
+  }
+
+  .messages-container {
+    margin: 160px auto 120px auto;
+  }
+
+  .messages-container span.time-desktop {
+    position: absolute;
+    visibility: hidden;
+  }
+
+  .messages-container span.time-mobile {
+    position: relative;
+    visibility: visible;
+  }
+
+  .message-input{
+    text-align: center;
+    display: block;
+  }
+  .user-input-btns{
+    display: block;
+    text-align: center;
+  }
+
 }

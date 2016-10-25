@@ -28,6 +28,7 @@ export default class UserInput extends Component {
         onChange={(e) => this.setState({ draftMessage: e.target.value })}
       />
       <span className='character-count'>{ 140-this.state.draftMessage.length}</span>
+      <span className = 'user-input-btns'>
       <input
         className='submit-button button'
         type='submit'
@@ -42,6 +43,7 @@ export default class UserInput extends Component {
         value='Clear'
         disabled ={this.state.draftMessage.length === 0}
       />
+      </span>
     </form>
     )
   }

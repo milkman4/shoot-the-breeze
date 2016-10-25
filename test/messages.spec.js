@@ -25,7 +25,7 @@ describe('Messages', () => {
   });
 
   it('calls componentDidMount', () => {
-    sinon.spy(Messages.prototype, 'componentDidMount');
+        sinon.spy(Messages.prototype, 'componentDidMount');
         const wrapper = mount(<Messages />);
         expect(Messages.prototype.componentDidMount.calledOnce).to.equal(true);
   });
@@ -90,7 +90,7 @@ describe('Messages', () => {
   });
 
   it('should filter messages based on the user who originally created the message', () => {
-    const wrapper = render(<Messages messages={messages}/>);
+    const wrapper = mount(<Messages/>);
     wrapper.setState({messages: [{
       user: {
         displayName: 'Matt',
@@ -110,9 +110,10 @@ describe('Messages', () => {
     }
   )
 
-  eval(locus)
-  console.log(wrapper.find('.user-list-container'))
-  console.log(wrapper.filteredMessages)
+  wrapper.find('#Matt').simulate('click')
+  expect(wrapper.state('filteredMessages').length).to.equal(1)
+  wrapper.find('#Andrew').simulate('click')
+  expect(wrapper.state('filteredMessages').length).to.equal(1)
 
   });
 });
