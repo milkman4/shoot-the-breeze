@@ -98,7 +98,7 @@ export default class Messages extends Component {
         <h1>Shoot The Breeze</h1>
         <MessageFilter filterFunction={this.filterMessages.bind(this)}/>
         <SortButtons sort={this.changeSort.bind(this)} />
-        <input type="number" value={this.state.messageView} onChange={(e) => this.changeMessageView(e)} />
+        <input type="number" min='1' value={this.state.messageView} onChange={(e) => this.changeMessageView(e)} />
       </header>
       <ul className='messages-container'>
         {messageDisplay}
