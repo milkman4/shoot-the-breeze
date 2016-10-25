@@ -6,9 +6,6 @@ import UserInput from './UserInput.jsx';
 import Messages from './Messages.jsx'
 
 
-// Very few things in this component are a good idea.
-// Feel free to blow it all away.
-
 export default class Application extends Component {
   constructor() {
     super();
@@ -18,14 +15,21 @@ export default class Application extends Component {
   }
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => this.setState({ user }));
+    console.log()
+
   }
   addNewMessage(draftMessage) {
     const { user } = this.state;
     messagesFromDatabase.push({
       user: pick(user, 'displayName', 'email', 'uid'),
       content: draftMessage,
-      createdAt: moment().format('MMMM D, h:mm a')
+      createdAt: moment().format('MMMM D, h:mm a'),
+      createdAtDesktop: moment().format('MMMM D, h:mm a'),
+      createdAtMobile: moment().format('MM/D, h:mm a')
     });
+  }
+  getMessages(){
+
   }
   render() {
     const { user, messages } = this.state;

@@ -4,7 +4,7 @@ import {split} from 'lodash'
 export const SingleUser = ({displayName, email, handleClick, currentUser}) => {
   let firstName = split(displayName, ' ')
   return (
-    <li className='single-user' onClick={()=>handleClick(displayName)}>
+    <li className='single-user' id={displayName} onClick={()=>handleClick(displayName)}>
       <span className='user-name'>
         {firstName[0]}&nbsp;
       </span>
