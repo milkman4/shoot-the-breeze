@@ -17,6 +17,7 @@ export default class UserInput extends Component {
     })
   }
   render() {
+    let disabled = this.state.draftMessage.length === 0
     return (
     <form className="message-input">
       <input
@@ -34,14 +35,14 @@ export default class UserInput extends Component {
         type='submit'
         onClick={(e) => this.submitMessage(e)}
         value='Submit'
-        disabled ={this.state.draftMessage.length === 0}
+        disabled ={disabled}
       />
       <input
         className='clear-button button'
         type='button'
         onClick={() => this.setState({draftMessage: ''})}
         value='Clear'
-        disabled ={this.state.draftMessage.length === 0}
+        disabled ={disabled}
       />
       </span>
     </form>

@@ -15,8 +15,6 @@ export default class Application extends Component {
   }
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => this.setState({ user }));
-    console.log()
-
   }
   addNewMessage(draftMessage) {
     const { user } = this.state;
@@ -28,9 +26,7 @@ export default class Application extends Component {
       createdAtMobile: moment().format('MM/D, h:mm a')
     });
   }
-  getMessages(){
 
-  }
   render() {
     const { user, messages } = this.state;
     let currentUser;

@@ -78,6 +78,7 @@ button.sort-up, button.sort-down {
 }
 
 .active-user{
+  font-weight: 300;
   color: white;
   padding-left: 10px;
   display: flex;
@@ -85,6 +86,10 @@ button.sort-up, button.sort-down {
   background-color: $activeUserColor;
   height: 50px;
   width: 100%;
+}
+
+span.bold {
+  font-weight: 700;
 }
 
 .messages-container{

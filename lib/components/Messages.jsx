@@ -28,7 +28,7 @@ export default class Messages extends Component {
   }
   filterMessages(filterString) {
     this.setState ({filteredMessages: filter(this.state.messages, (message) => {
-        return message.content.toLowerCase().includes(filterString.toLowerCase())
+        return message.content.toLowerCase().includes(filterString.toLowerCase()) && filterString !== ''
       }),
       filterString: filterString});
   }
@@ -77,7 +77,7 @@ export default class Messages extends Component {
     return userArray;
   }
   render() {
-    let userArray = this.getUserArray()
+    let userArray = this.getUserArray();
 
     let userListDisplay;
     if(userArray.length > 0){
