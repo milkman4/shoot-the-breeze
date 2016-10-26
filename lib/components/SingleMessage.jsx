@@ -17,7 +17,7 @@ export const SingleMessage = ({user, createdAtDesktop, createdAtMobile, content,
       <span className="display-name">
         {user.displayName}
       </span>
-      {deleteButton}
+        {deleteButton}
       <p className="content">
         {content}
       </p>
