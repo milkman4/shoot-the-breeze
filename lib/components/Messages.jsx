@@ -52,6 +52,9 @@ export default class Messages extends Component {
       duration: 0 //happen instantly
     });
   }
+  deleteMessage(key) {
+    messagesFromDatabase.child(key).remove()
+  }
   changeMessageView(e){
     this.setState({ messageView: e.target.value})
     messagesFromDatabase.limitToLast(parseInt(e.target.value)).on('value', (snapshot) => {
@@ -100,7 +103,9 @@ export default class Messages extends Component {
         <h1>Shoot The Breeze</h1>
         <MessageFilter filterFunction={this.filterMessages.bind(this)}/>
         <SortButtons sort={this.changeSort.bind(this)} />
+        <h4 className='disp-text'>Display</h4>
         <input className = 'number-of-msgs' type="number" min='1' value={this.state.messageView} onChange={(e) => this.changeMessageView(e)} />
+        <h4 className='disp-text'>Messsages</h4>
       </header>
       <ul className='messages-container'>
         {messageDisplay}

@@ -47,8 +47,12 @@ input[type=text], .number-of-msgs{
   border-radius: 2px;
 }
 
+.disp-text{
+  display: inline-block;
+  color: white;
+}
 .number-of-msgs{
-  width: 75px;
+  width: 40px;
 }
 
 header, footer{
@@ -96,6 +100,14 @@ button.sort-up, button.sort-down {
   .display-name{
     margin: 10px;
     color: $userNameColor;
+  }
+  .delete-message{
+    font-size: 10px;
+    color: lightGrey;
+  }
+  .delete-message:hover{
+    cursor: pointer;
+    color: black;
   }
   .content{
     margin: 15px;
