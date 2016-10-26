@@ -2,6 +2,7 @@ import React from 'react'
 
 export const SingleMessage = ({user, createdAtDesktop, createdAtMobile, content, currentUser, id, deleteMessage}) => {
   let deleteButton;
+  let commitTest;
   if(user.displayName === currentUser){
     deleteButton = <span className='delete-message' onClick={()=>deleteMessage(id)}>Delete</span>
   }
