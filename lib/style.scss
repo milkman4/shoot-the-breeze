@@ -97,6 +97,14 @@ button.sort-up, button.sort-down {
     margin: 10px;
     color: $userNameColor;
   }
+  .delete-message{
+    font-size: 10px;
+    color: lightGrey;
+  }
+  .delete-message:hover{
+    cursor: pointer;
+    color: black;
+  }
   .content{
     margin: 15px;
   }

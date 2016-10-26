@@ -46,6 +46,9 @@ export default class Messages extends Component {
       duration: 0 //happen instantly
     });
   }
+  deleteMessage(key) {
+    messagesFromDatabase.child(key).remove()
+  }
   changeMessageView(e){
     this.setState({ messageView: e.target.value})
     messagesFromDatabase.limitToLast(parseInt(e.target.value)).on('value', (snapshot) => {
@@ -77,11 +80,11 @@ export default class Messages extends Component {
 
     let messageDisplay;
     if(this.state.filteredMessages.length > 0){
-      messageDisplay = this.state.filteredMessages.map(m => <SingleMessage {...m} key={m.key}/>)
+      messageDisplay = this.state.filteredMessages.map(m => <SingleMessage currentUser={this.props.currentUser} {...m} deleteMessage = {this.deleteMessage.bind(this)} key={m.key}/>)
     } else if (this.state.filterString.length > 0){
       messageDisplay = ''
     } else {
-      messageDisplay = this.state.messages.map(m => <SingleMessage {...m} key={m.key}/>)
+      messageDisplay = this.state.messages.map(m => <SingleMessage currentUser={this.props.currentUser} {...m} id={m.key} key={m.key} deleteMessage = {this.deleteMessage.bind(this)}/>)
     }
 
     if(this.state.reverseMessages){
