@@ -38,6 +38,12 @@ export default class Messages extends Component {
       this.setState({
         messages: map(messages, (val, key) => extend(val, { key }))
       });
+      if(this.state.filterString){
+        this.setState ({filteredMessages: filter(map(messages, (val, key) => extend(val, { key })), (message) => {
+            return message.content.toLowerCase().includes(this.state.filterString.toLowerCase())
+          })
+        });
+      }
     });
   }
   componentDidUpdate() {
@@ -77,11 +83,11 @@ export default class Messages extends Component {
 
     let messageDisplay;
     if(this.state.filteredMessages.length > 0){
-      messageDisplay = this.state.filteredMessages.map(m => <SingleMessage {...m} key={m.key}/>)
-    } else if (this.state.filterString.length > 0){
+      messageDisplay = this.state.filteredMessages.map(m => <SingleMessage currentUser={this.props.currentUser} {...m} deleteMessage = {this.deleteMessage.bind(this)} key={m.key} id={m.key}/>)
+    } else if (this.state.filterString.length > 0) {
       messageDisplay = ''
     } else {
-      messageDisplay = this.state.messages.map(m => <SingleMessage {...m} key={m.key}/>)
+      messageDisplay = this.state.messages.map(m => <SingleMessage currentUser={this.props.currentUser} {...m} id={m.key} deleteMessage = {this.deleteMessage.bind(this)} key={m.key}/>)
     }
 
     if(this.state.reverseMessages){
