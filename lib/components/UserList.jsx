@@ -7,7 +7,7 @@ export const UserList = ({userList, filterByUser, currentUser}) => {
   let displayUsers = userList.map(user => <SingleUser {...user} currentUser={currentUser} key={user.uid} handleClick={filterByUser}/>)
   return (
     <div className="user-list-container">
-      <h2 onClick={() => filterByUser(userList)}> Users </h2>
+      <h2 onClick={() => filterByUser('')}> Users </h2>
       <ul className="user-list">
           {displayUsers}
       </ul>

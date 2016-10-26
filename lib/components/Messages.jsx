@@ -15,22 +15,16 @@ export default class Messages extends Component {
       reverseMessages: false,
       messages: [],
       messagesCount: '',
-      filteredMessages: [],
       filterString: '',
-      messageView: 100
+      messageView: 100,
+      filterUser: ''
     };
   }
   filterByUser(user){
-    this.setState ({filteredMessages: filter(this.state.messages, (message) => {
-        return message.user.displayName.includes(user);
-      })
-    });
+    this.setState({filterUser: user})
   }
   filterMessages(filterString) {
-    this.setState ({filteredMessages: filter(this.state.messages, (message) => {
-        return message.content.toLowerCase().includes(filterString.toLowerCase()) && filterString !== ''
-      }),
-      filterString: filterString});
+    this.setState ({filterString: filterString});
   }
   componentDidMount() {
     messagesFromDatabase.limitToLast(this.state.messageView).on('value', (snapshot) => {
@@ -38,12 +32,6 @@ export default class Messages extends Component {
       this.setState({
         messages: map(messages, (val, key) => extend(val, { key }))
       });
-      if(this.state.filterString){
-        this.setState ({filteredMessages: filter(map(messages, (val, key) => extend(val, { key })), (message) => {
-            return message.content.toLowerCase().includes(this.state.filterString.toLowerCase())
-          })
-        });
-      }
     });
   }
   componentDidUpdate() {
@@ -84,14 +72,19 @@ export default class Messages extends Component {
       userListDisplay = <UserList userList={userArray} currentUser={this.props.currentUser} filterByUser = {this.filterByUser.bind(this)}/>
     }
 
-    let messageDisplay;
-    if(this.state.filteredMessages.length > 0){
-      messageDisplay = this.state.filteredMessages.map(m => <SingleMessage currentUser={this.props.currentUser} {...m} deleteMessage = {this.deleteMessage.bind(this)} key={m.key} id={m.key}/>)
-    } else if (this.state.filterString.length > 0) {
-      messageDisplay = ''
-    } else {
-      messageDisplay = this.state.messages.map(m => <SingleMessage currentUser={this.props.currentUser} {...m} id={m.key} deleteMessage = {this.deleteMessage.bind(this)} key={m.key}/>)
+    let messageArray= this.state.messages;
+
+    if(this.state.filterString.length > 0) {
+      messageArray = filter(messageArray, (message) => {
+          return message.content.toLowerCase().includes(this.state.filterString.toLowerCase()) && this.state.filterString !== ''
+      })
     }
+    if(this.state.filterUser.length > 0){
+      messageArray = filter(messageArray, (message) => {
+          return message.user.displayName.includes(this.state.filterUser) && this.state.filterUser !== '';
+      })
+    }
+    let messageDisplay = messageArray.map(m => <SingleMessage currentUser={this.props.currentUser} {...m} id={m.key} deleteMessage = {this.deleteMessage.bind(this)} key={m.key}/>)
 
     if(this.state.reverseMessages){
       messageDisplay = messageDisplay.reverse()

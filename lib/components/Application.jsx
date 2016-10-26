@@ -32,8 +32,8 @@ export default class Application extends Component {
     let currentUser;
     let firstName;
     if (this.state.user !== null) {
-      currentUser = this.state.user.displayName
-      firstName = split(this.state.user.displayName, ' ')
+      currentUser = this.state.user.displayName;
+      firstName = split(this.state.user.displayName, ' ');
     }
 
     return (
