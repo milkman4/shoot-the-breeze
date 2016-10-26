@@ -47,8 +47,12 @@ input[type=text], .number-of-msgs{
   border-radius: 2px;
 }
 
+.disp-text{
+  display: inline-block;
+  color: white;
+}
 .number-of-msgs{
-  width: 75px;
+  width: 40px;
 }
 
 header, footer{

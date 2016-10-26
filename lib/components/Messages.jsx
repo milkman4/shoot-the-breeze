@@ -84,7 +84,8 @@ export default class Messages extends Component {
     } else if (this.state.filterString.length > 0){
       messageDisplay = ''
     } else {
-      messageDisplay = this.state.messages.map(m => <SingleMessage currentUser={this.props.currentUser} {...m} id={m.key} key={m.key} deleteMessage = {this.deleteMessage.bind(this)}/>)
+      messageDisplay = this.state.messages.map(m => {
+        <SingleMessage currentUser={this.props.currentUser} {...m} id={m.key} key={m.key} deleteMessage = {this.deleteMessage.bind(this)}/>})
     }
 
     if(this.state.reverseMessages){
@@ -97,7 +98,9 @@ export default class Messages extends Component {
         <h1>Shoot The Breeze</h1>
         <MessageFilter filterFunction={this.filterMessages.bind(this)}/>
         <SortButtons sort={this.changeSort.bind(this)} />
+        <h4 className='disp-text'>Display</h4>
         <input className = 'number-of-msgs' type="number" min='1' value={this.state.messageView} onChange={(e) => this.changeMessageView(e)} />
+        <h4 className='disp-text'>Messsages</h4>
       </header>
       <ul className='messages-container'>
         {messageDisplay}

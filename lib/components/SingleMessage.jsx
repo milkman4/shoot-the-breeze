@@ -5,8 +5,6 @@ export const SingleMessage = ({user, createdAtDesktop, createdAtMobile, content,
   if(user.displayName === currentUser){
     deleteButton = <span className='delete-message' onClick={()=>deleteMessage(id)}>Delete</span>
   }
-  console.log(currentUser);
-
   return (
     <li>
       <span className="time-stamp time-desktop">
