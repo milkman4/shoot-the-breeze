@@ -35,27 +35,24 @@ describe('Messages', () => {
     const input = wrapper.find('.message-input-field');
     const searchField = wrapper.find('.message-filter');
 
-    var message1 ={
+    wrapper.setState({messages: [{
       user: {
         displayName: 'Andrew',
         email: 'andrew.l.crist@gmail.com',
         uid: 1234
       },
-      content: 'Matt is cool',
-    key: 1234
-    }
-    var message2 ={
-      user: {
+      content: 'Matt is cool'}
+      ,
+      {user: {
         displayName: 'Lacey',
         email: 'Lacey.r.knaff@gmail.com',
         uid: 9876
         },
-      content: 'Fabulous dog muffins is the Matt',
-      key: 4019
+      content: 'Fabulous dog muffins is the Matt'
+      }
+    ]
     }
-
-    wrapper.setState({messages: [message1, message2]})
-
+  )
     searchField.simulate('change', {target: {value: 'cool'}})
     expect(wrapper.state('filterString')).to.equal('cool');
     expect(wrapper.state('filteredMessages').length).to.equal(1);
@@ -66,25 +63,24 @@ describe('Messages', () => {
     const upArrow = wrapper.find('.sort-up');
     const downArrow = wrapper.find('.sort-down');
 
-    var message1 ={
+    wrapper.setState({messages: [{
       user: {
-        displayName: 'Andrew',
+        displayName: 'Matt',
         email: 'andrew.l.crist@gmail.com',
         uid: 1234
       },
-      content: 'Matt is cool',
-      key: 12531}
-    var message2 ={
-      user: {
-        displayName: 'Lacey',
+      content: 'Matt is the best'}
+      ,
+      {user: {
+        displayName: 'Andrew',
         email: 'Lacey.r.knaff@gmail.com',
         uid: 9876
         },
-      content: 'Fabulous dog muffins is the Matt',
-      key: 49281
+      content: 'Fabulous dog muffins is the Andrew'
+      }
+    ]
     }
-    wrapper.setState({messages: [message1, message2]})
-
+  )
       upArrow.simulate('click');
       expect(wrapper.state('reverseMessages')).to.equal(true)
 
@@ -101,21 +97,18 @@ describe('Messages', () => {
         email: 'andrew.l.crist@gmail.com',
         uid: 1234
       },
-      content: 'Matt is the best',
-      key: 413231}
+      content: 'Matt is the best'}
       ,
       {user: {
         displayName: 'Andrew',
         email: 'Lacey.r.knaff@gmail.com',
         uid: 9876
         },
-      content: 'Fabulous dog muffins is the Andrew',
-      key: 15928
+      content: 'Fabulous dog muffins is the Andrew'
       }
     ]
     }
   )
-
 
   wrapper.find('#Matt').simulate('click')
   expect(wrapper.state('filteredMessages').length).to.equal(1)
